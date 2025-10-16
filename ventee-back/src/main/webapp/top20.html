@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Top 20 Produits les Plus Vendus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#8a79ab",
+              secondary: "#dfd9ec",
+              background: "#f8f7fa",
+              accent: "#e6a5b8",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .product-card {
+        transition: transform 0.2s;
+      }
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+      .rank-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body class="bg-background min-h-screen">
+    <header class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div class="flex justify-between items-center">
+          <a href="index.html"
+            ><h1 class="text-2xl font-bold text-primary">
+              VentEE
+            </h1></a
+          >
+          <div class="flex items-center space-x-4">
+            <a
+              href="top20.html"
+              class="text-gray-700 hover:text-primary transition duration-200 text-sm"
+              >Top 20</a
+            >
+            <a
+              href="purchaces.html"
+              class="text-gray-700 hover:text-primary transition duration-200 text-sm"
+              >Mes achats</a
+            >
+            <span id="userName" class="text-gray-700"></span>
+            <button
+              onclick="logout()"
+              class="bg-primary/90 text-white px-4 py-2 rounded-md hover:bg-primary transition duration-200 text-sm"
+            >
+              Déconnexion
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div
+      class="container py-5 flex justify-center item-center flex-col gap-2 mx-auto"
+    >
+      <div>
+        <h1 class="text-center mb-8 text-3xl font-bold text-gray-900">
+          Top 20 Produits les Plus Vendus
+        </h1>
+      </div>
+
+      <div
+        id="products-container"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mx-auto max-w-7xl"
+      >
+        <!-- Les produits seront injectés ici dynamiquement -->
+      </div>
+
+      <!-- Template pour une carte produit -->
+      <template id="product-template">
+        <div>
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full product-card relative"
+          >
+            <div
+              class="rank-badge absolute top-2 right-2 text-xs font-semibold inline-block py-1 px-2 rounded bg-primary text-white"
+            ></div>
+            <div class="p-4 flex flex-col flex-grow">
+              <h5
+                class="text-lg font-semibold text-gray-800 product-name"
+              ></h5>
+              <p class="text-sm text-gray-600 mt-1 flex-grow">
+                <span
+                  class="text-sm text-gray-500 sales-count"
+                ></span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <script src="js/top20.js"></script>
+  </body>
+</html>

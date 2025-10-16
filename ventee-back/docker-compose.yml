@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  postgresql:
+    image: postgres:13-alpine
+    container_name: ventee-postgresql
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ventee
+      POSTGRES_USER: boywithuke
+      POSTGRES_PASSWORD: bankai
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+    networks:
+      - ventee-network
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: ventee-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - ventee-network
+
+  glassfish:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ventee-glassfish
+    restart: unless-stopped
+    ports:
+      - "8080:8080" # Port HTTP
+      - "4848:4848" # Port d'administration GlassFish
+    environment:
+      # Variables d'environnement pour la connexion à la base de données
+      DB_HOST: postgresql
+      DB_PORT: 5432
+      DB_NAME: ventee
+      DB_USER: boywithuke
+      DB_PASSWORD: bankai
+      # Variables d'environnement pour la connexion à Redis
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      - postgresql
+      - redis
+    networks:
+      - ventee-network
+
+volumes:
+  postgresql-data:
+    name: ventee-postgresql-data
+  redis-data:
+    name: ventee-redis-data
+
+networks:
+  ventee-network:
+    name: ventee-network

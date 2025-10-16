@@ -1,0 +1,14 @@
+ventee/RestServices.class
+ventee/resource/UserServices.class
+ventee/resource/UserProductServices.class
+ventee/entity/TestEntity.class
+ventee/util/RedisManager.class
+ventee/entity/UserProductId.class
+ventee/entity/UserProduct.class
+ventee/resource/Top20ProductsServicees.class
+ventee/entity/User.class
+ventee/RestApplication.class
+ventee/entity/Product.class
+ventee/util/ApplicationInitializer.class
+ventee/resource/ProductServices.class
+ventee/resource/DatabaseTestResource.class

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Ventee - Mes Achats</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#8a79ab",
+              secondary: "#dfd9ec",
+              background: "#f8f7fa",
+              accent: "#e6a5b8",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-background min-h-screen">
+    <header class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div class="flex justify-between items-center">
+          <a href="index.html"
+            ><h1 class="text-2xl font-bold text-primary">
+              VentEE
+            </h1></a
+          >
+          <div class="flex items-center space-x-4">
+            <a
+              href="top20.html"
+              class="text-gray-700 hover:text-primary transition duration-200 text-sm"
+              >Top 20</a
+            >
+            <a
+              href="purchaces.html"
+              class="text-gray-700 hover:text-primary transition duration-200 text-sm"
+              >Mes achats</a
+            >
+            <span id="userName" class="text-gray-700"></span>
+            <button
+              onclick="logout()"
+              class="bg-primary/90 text-white px-4 py-2 rounded-md hover:bg-primary transition duration-200 text-sm"
+            >
+              Déconnexion
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-background"
+    >
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Mes Achats
+        </h2>
+        <p class="text-lg text-gray-600">
+          Voici les produits que vous avez achetés :
+        </p>
+      </div>
+
+      <!-- Grille de produits achetés -->
+      <div
+        id="purchasesContainer"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      >
+        <!-- Les produits achetés seront ajoutés ici dynamiquement -->
+      </div>
+    </main>
+
+    <script src="js/purchaces.js"></script>
+  </body>
+</html>
