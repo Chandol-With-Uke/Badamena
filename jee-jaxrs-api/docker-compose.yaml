@@ -8,4 +8,48 @@ services:
     container_name: jee-jaxrs-api
     ports:
       - "8080:8080"
+    depends_on:
+      - db
+      - cache
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=products_db
+      - DB_USER=user
+      - DB_PASSWORD=password
+      - REDIS_HOST=cache
+      - REDIS_PORT=6379
+    networks:
+      - app-network
     restart: unless-stopped
+
+  db:
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: products_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  cache:
+    image: redis:6.2
+    container_name: redis_cache
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge

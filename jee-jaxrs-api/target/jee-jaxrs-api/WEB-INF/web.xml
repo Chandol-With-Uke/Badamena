@@ -1,7 +1,15 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+    <data-source>
+        <name>java:global/jdbc/ProductDS</name>
+        <class-name>org.postgresql.ds.PGSimpleDataSource</class-name>
+        <url>jdbc:postgresql://${ENV=DB_HOST}:${ENV=DB_PORT}/${ENV=DB_NAME}</url>
+        <user>${ENV=DB_USER}</user>
+        <password>${ENV=DB_PASSWORD}</password>
+    </data-source>
+
 </web-app>

@@ -1,2 +1,5 @@
 /home/boywithuke/Project/Badamena/jee-jaxrs-api/src/main/java/com/example/api/ApplicationConfig.java
+/home/boywithuke/Project/Badamena/jee-jaxrs-api/src/main/java/com/example/api/resources/ProductResource.java
 /home/boywithuke/Project/Badamena/jee-jaxrs-api/src/main/java/com/example/api/resources/HelloResource.java
+/home/boywithuke/Project/Badamena/jee-jaxrs-api/src/main/java/com/example/api/service/DatabaseInitializer.java
+/home/boywithuke/Project/Badamena/jee-jaxrs-api/src/main/java/com/example/api/model/Product.java

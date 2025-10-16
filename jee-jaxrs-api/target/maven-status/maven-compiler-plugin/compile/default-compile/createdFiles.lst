@@ -1,2 +1,5 @@
+com/example/api/resources/ProductResource.class
+com/example/api/service/DatabaseInitializer.class
 com/example/api/ApplicationConfig.class
 com/example/api/resources/HelloResource.class
+com/example/api/model/Product.class
