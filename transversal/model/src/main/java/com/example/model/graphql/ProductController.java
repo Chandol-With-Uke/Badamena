@@ -2,14 +2,13 @@ package com.example.model.graphql;
 
 import com.example.model.domain.Product;
 import com.example.model.repository.ProductRepository;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
-
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class ProductController {
@@ -29,17 +28,31 @@ public class ProductController {
 
     @MutationMapping
     public Product createProduct(@Argument ProductInput product) {
-        Product newProduct = new Product(product.name(), product.description());
+        // Le constructeur Product maintenant prend name, description, price
+        Product newProduct = new Product(
+            product.name(),
+            product.description(),
+            product.price()
+        );
         return productRepository.save(newProduct);
     }
 
     @MutationMapping
-    public Product updateProduct(@Argument Long id, @Argument ProductInput product) {
-        Product existingProduct = productRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Product not found with id: " + id));
+    public Product updateProduct(
+        @Argument Long id,
+        @Argument ProductInput product
+    ) {
+        Product existingProduct = productRepository
+            .findById(id)
+            .orElseThrow(() ->
+                new IllegalArgumentException(
+                    "Product not found with id: " + id
+                )
+            );
 
         existingProduct.setName(product.name());
         existingProduct.setDescription(product.description());
+        existingProduct.setPrice(product.price()); // Mise à jour du prix
 
         return productRepository.save(existingProduct);
     }
@@ -54,5 +67,5 @@ public class ProductController {
     }
 }
 
-// DTO record for the input type
-record ProductInput(String name, String description) {}
+// DTO record mis à jour pour inclure le prix
+record ProductInput(String name, String description, Float price) {}

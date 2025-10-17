@@ -11,15 +11,18 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String description;
+    private Float price; // Ajout du champ price
 
-    public Product() {
-    }
+    public Product() {}
 
-    public Product(String name, String description) {
+    // Constructeur mis à jour pour inclure le prix
+    public Product(String name, String description, Float price) {
         this.name = name;
         this.description = description;
+        this.price = price;
     }
 
     public Long getId() {
@@ -44,5 +47,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    // Getter et Setter pour le prix
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
     }
 }
