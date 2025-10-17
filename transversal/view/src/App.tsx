@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery, useMutation, gql } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import {
   ColumnDef,
   flexRender,
@@ -8,14 +8,6 @@ import {
 } from "@tanstack/react-table";
 import { MoreHorizontal, PlusCircle, Edit, Trash2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import {
   Dialog,
   DialogContent,
@@ -35,53 +27,8 @@ import {
 } from "@/components/ui/card";
 import { Toaster, toast } from "sonner";
 import { ProductsChart } from "./components/ProductsChart";
+import { CREATE_PRODUCT, DELETE_PRODUCT, GET_PRODUCTS, UPDATE_PRODUCT, type Product } from "./lib/gql";
 
-// GraphQL Queries & Mutations
-const GET_PRODUCTS = gql`
-  query GetProducts {
-    products {
-      id
-      name
-      description
-      price
-    }
-  }
-`;
-
-const CREATE_PRODUCT = gql`
-  mutation CreateProduct($name: String!, $description: String!, $price: Float!) {
-    createProduct(product: { name: $name, description: $description, price: $price }) {
-      id
-      name
-      description
-      price
-    }
-  }
-`;
-
-const UPDATE_PRODUCT = gql`
-  mutation UpdateProduct($id: ID!, $name: String!, $description: String!, $price: Float!) {
-    updateProduct(id: $id, product: { name: $name, description: $description, price: $price }) {
-      id
-      name
-      description
-      price
-    }
-  }
-`;
-
-const DELETE_PRODUCT = gql`
-  mutation DeleteProduct($id: ID!) {
-    deleteProduct(id: $id)
-  }
-`;
-
-type Product = {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-};
 
 function App() {
   const { loading, error, data, refetch } = useQuery(GET_PRODUCTS);
