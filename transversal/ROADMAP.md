@@ -38,6 +38,7 @@ Ce document décrit les étapes de développement pour la création du dashboard
 *   **2.3. Schéma GraphQL**: Créer le schéma GraphQL dans `src/main/resources/graphql/` pour définir les types, requêtes (queries) et mutations.
 *   **2.4. Resolvers GraphQL**: Implémenter les `GraphQLController` en Java pour répondre aux requêtes définies dans le schéma.
 *   **2.5. Démarrage**: S'assurer que le modèle démarre et que le playground GraphQL (GraphiQL) est accessible.
+*   **2.6. Test de l'API**: Valider le nouvel endpoint GraphQL avec un outil comme `curl` ou un client GraphQL.
 
 ---
 
@@ -48,6 +49,7 @@ Ce document décrit les étapes de développement pour la création du dashboard
 *   **3.1. Serveur Hono**: Mettre en place un serveur Hono de base.
 *   **3.2. "Schema Stitching" / "Federation" (simplifié)**: Configurer le serveur pour qu'il agisse comme un proxy. Il recevra les requêtes de la vue et les transmettra à l'API GraphQL du service `model`.
 *   **3.3. Test de la passerelle**: Envoyer une requête GraphQL au contrôleur et vérifier qu'elle est bien résolue par le modèle.
+*   **3.4. Test de la passerelle**: Utiliser `curl` pour interroger le contrôleur et s'assurer qu'il transmet correctement la requête au modèle.
 
 ---
 
@@ -59,6 +61,7 @@ Ce document décrit les étapes de développement pour la création du dashboard
 *   **4.2. Client Apollo**: Configurer Apollo Client dans l'application React pour communiquer avec le contrôleur Node.js.
 *   **4.3. Composants de base**: Créer les composants principaux (Layout, Sidebar, Header, etc.).
 *   **4.4. Première page**: Créer une page simple (ex: "Liste des utilisateurs") qui envoie une requête GraphQL via le contrôleur pour afficher des données provenant du modèle.
+*   **4.5. Test Visuel**: Confirmer dans le navigateur que la page affiche correctement les données (ou un état vide) récupérées depuis l'API.
 
 ---
 
@@ -69,6 +72,7 @@ Ce document décrit les étapes de développement pour la création du dashboard
 *   **5.1. Mutations GraphQL**: S'assurer que les mutations (create, update, delete) sont bien définies dans le modèle Spring Boot.
 *   **5.2. Transmission des mutations**: Permettre au contrôleur Node.js de transmettre les mutations.
 *   **5.3. Intégration UI**: Créer les formulaires et les boutons dans React pour exécuter les mutations (ex: ajouter un utilisateur, modifier, supprimer).
+*   **5.4. Test E2E (End-to-End)**: Simuler une action utilisateur complète (ex: remplir un formulaire et cliquer sur "sauvegarder") et vérifier que la donnée est bien persistée en base.
 
 ---
 
@@ -81,3 +85,4 @@ Ce document décrit les étapes de développement pour la création du dashboard
 *   **6.3. Validation du Token**: Dans le contrôleur Node.js, ajouter un middleware qui intercepte chaque requête, valide le token JWT et injecte les informations de l'utilisateur dans le contexte de la requête.
 *   **6.4. Gestion du Token côté Vue**: Stocker le token JWT dans le client React (ex: `localStorage`) et l'envoyer dans les en-têtes de chaque requête GraphQL.
 *   **6.5. Routes protégées**: Mettre en place la logique de routes protégées dans React.
+*   **6.6. Test de Sécurité**: Tenter d'accéder à une ressource protégée sans token JWT et vérifier que l'accès est refusé. Puis, s'authentifier et vérifier que l'accès est autorisé.
