@@ -2,11 +2,13 @@ type Product {
     id: ID!
     name: String
     description: String
+    price: Float # Rendu nullable pour l'instant
 }
 
 input ProductInput {
     name: String!
     description: String
+    price: Float # Rendu nullable pour l'instant
 }
 
 type Query {
