@@ -34,6 +34,7 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Toaster, toast } from "sonner";
+import { ProductsChart } from "./components/ProductsChart";
 
 // GraphQL Queries & Mutations
 const GET_PRODUCTS = gql`
@@ -291,6 +292,7 @@ function App() {
             Ajouter un Produit
           </Button>
         </div>
+        <div className="grid gap-8 mt-8">
 
         {/* Products Card */}
         <Card className="shadow-2xl border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg">
@@ -366,6 +368,11 @@ function App() {
           </CardContent>
         </Card>
 
+        
+        
+          {/* Le nouveau graphique */}
+          <ProductsChart products={data?.products || []} />
+        </div>
         {/* Product Dialog (Add/Edit) */}
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogContent className="sm:max-w-[500px] bg-white dark:bg-gray-800">
